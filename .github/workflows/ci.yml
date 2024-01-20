@@ -16,6 +16,7 @@ jobs:
         uses: actions/setup-node@v1.3.0
         with:
           node-version: ${{ matrix.node }}
+          ACTIONS_ALLOW_UNSECURE_COMMANDS: true
       - name: Get NPM cache directory
         id: npm-cache
         run: |
@@ -36,6 +37,7 @@ jobs:
         with:
           name: test-coverage-${{ matrix.os }}-${{ matrix.node }}
           path: coverage
+          ACTIONS_ALLOW_UNSECURE_COMMANDS: true
   lint:
     name: Lint
     runs-on: ubuntu-latest
