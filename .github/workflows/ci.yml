@@ -7,7 +7,7 @@ jobs:
     strategy:
       matrix:
         os: [ubuntu-22.04]
-        node: [10]
+        node: [16.x]
     runs-on: ${{ matrix.os }}
     steps:
       - name: Checkout
@@ -22,7 +22,7 @@ jobs:
         run: |
           echo "::set-output name=dir::$(npm config get cache)"
       - name: Cache NPM
-        uses: actions/cache@v1.1.0
+        uses: actions/cache@v4
         with:
           path: ${{ steps.npm-cache.outputs.dir }}
           key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
@@ -44,17 +44,17 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v3
-      - name: Set Node.js 12.x
+      - name: Set Node.js 16.x
         uses: actions/setup-node@v3
         with:
-          node-version: 12.x
+          node-version: "16"
           ACTIONS_ALLOW_UNSECURE_COMMANDS: true
       - name: Get NPM cache directory
         id: npm-cache
         run: |
           echo "::set-output name=dir::$(npm config get cache)"
       - name: Cache NPM
-        uses: actions/cache@v1.1.0
+        uses: actions/cache@v4
         with:
           path: ${{ steps.npm-cache.outputs.dir }}
           key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
