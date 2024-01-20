@@ -46,6 +46,7 @@ jobs:
         uses: actions/setup-node@v1.3.0
         with:
           node-version: 12.x
+          ACTIONS_ALLOW_UNSECURE_COMMANDS: true
       - name: Get NPM cache directory
         id: npm-cache
         run: |
